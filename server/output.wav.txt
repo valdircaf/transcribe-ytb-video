@@ -1,0 +1,119 @@
+ Olá, pessoal, eu sou a Loiane, e no vídeo de hoje nós vamos aprender como criar e executar projetos Java com Spring Boot no Visual Studio Code.
+ Continuando a série sobre vídeos no Visual Studio Code, hoje finalmente vamos fazer um projeto com Spring Boot.
+ Antes de a gente começar, a gente precisa ter algumas coisas instaladas no Visual Studio Code, é claro, além de ter o nosso ambiente Java configurado na nossa máquina.
+ Aqui no ícone de extensões, nós vamos conferir para ver se nós temos todos os requerimentos para a aula de hoje.
+ Primeira coisa que nós vamos fazer é procurar por Java, então aqui nós precisamos de ter esse Java Extension Pack,
+ que é esse pacote de insensões da Microsoft, que dá o suporte básico para a Java aqui no Visual Studio Code.
+ Esse é um pacote de extensões, o segundo vai ser o pacote de extensões para Spring Boot.
+ Então, a gente vem aqui de ter Spring Boot. E aqui tem esse Spring Boot Extension Pack, que é um pacote de extensões feito pela pv,
+ que é a empresa que mantém o Spring Boot. E nesse pacote de extensões, nós temos o Spring Boot Tools,
+ e o Spring Boot Initializer, ou seja, que vai ajudar a gente criar um projeto do Spring, a partir do Spring.io.
+ Outra coisa que nós também vamos precisar, é esse Spring Boot Dashboard, que também foi feito pela Microsoft,
+ vai ajudar a gente a conseguir identificar projetos Spring Boot no nosso workspace,
+ e também, uma maneira fácil de a gente poder executar o nosso projeto, ou então, debugar o nosso projeto.
+ Além disso, para quem trabalha bastante com Spring, é bem comum a gente utilizar o Lombok, também,
+ para não precisar ficar criando construtores e métodos Getters and Servers.
+ Então, para isso, se vocês quiserem, também pode precisar aqui por Lombok, e aí instala essa extensão também,
+ para adicionar o suporte ao Lombok. Feito tudo isso, eu vou voltar aqui no meu Java Overview,
+ lembrando se você quiser ver essa tab, é só apertar Ctrl+Shift+P, para abrir a paleta aqui no Visual Studio Code,
+ e digitar aqui Java, dois traços, e começar a digitar o Overview para poder abrir essa aba aqui.
+ Quando a gente está aqui, a gente consegue criar os projetos a partir dessa tela,
+ ou, se você preferir, pode apertar novamente o Ctrl+Shift+P, e digitar Spring.
+ Quando a gente digita Spring, vai vim aqui o Spring Initializer.
+ Com esse Spring Initializer, a gente tem duas opções, criar um projeto com Maving,
+ ou criar um projeto com Grerole, vai depender aí da sua preferência.
+ Como eu tenho um Maving configurado instalado nessa máquina, eu vou criar o meu projeto com Maving.
+ O que esse Spring Initializer faz?
+ É basicamente o que nós temos aqui no start.spring.io, você escolhe entre Maving ou Grerole,
+ e você também vai escolher entre Java, Kotlin ou Groove, a gente escolhe a versão do Spring Boot,
+ coloca aqui o grupo o nome do artefato, no caso isso aqui é com um Maving,
+ e também as dependências. Aqui nas dependências, por exemplo, a gente pode pegar o Longbox,
+ pode pegar para criar, Ctrl+Shift, a gente pode colocar aqui RESTful,
+ se quiser um banco de dados, pode colocar um H2, uma SQL, ou um MongoDB,
+ enfim, você vai escolher todas as dependências.
+ E no Visual Studio Code, nós vamos ter exatamente os mesmos passos.
+ Voltando aqui, então, eu vou clicar para criar um projeto com Spring Boot.
+ Vou escolher aqui o Maving, já que é minha preferência.
+ Vou escolher o Java, também, você também pode escolher Kotlin ou Groove,
+ de acordo com a sua preferência. Grupo, já contou criando aqui com Maving,
+ então, vai fazer as mesmas perguntas geralmente que a gente tem com a criação de um projeto Maving.
+ Então, com um ponto loianne, aqui eu vou utilizar o nome do projeto.
+ Eu vou criar como Spring VS Code, você também pode dar o nome que você deseja.
+ A gente vai especificar a versão do Spring Boot, eu vou pegar a última que está disponível aqui no momento,
+ que é a última versão estável, as outras são snapshots.
+ E aqui as dependências, nós também podemos pesquisar.
+ Então, por exemplo, o Longbox, eu gosto de usar o Longbox, tem gente que gosta de gente que não gosta,
+ fica também a critério de vocês.
+ Eu vou colocar também aqui o REST para repositórios REST.
+ Se você quiser um banco de dados, por exemplo, pode colocar aqui também um H2, enfim,
+ pode escolher todas as suas preferências.
+ E se você quiser, também pode pegar, por exemplo, o Spring Boot Tools.
+ Então, você vem aqui com o seu maus, e mesmo, escolhe quais são as suas dependências.
+ Assim que você terminar de escolher, você aperta Enter.
+ O próximo passo é salvar esse projeto, porque nós estamos fazendo exatamente o download.
+ Vai ser feito diretamente do start Spring.io.
+ Eu vou escolher aqui o direitório do VESC code, é onde eu tenho todos os meus exemplos com Visual Studio Code.
+ E aqui, ele vai gerar o que vai acontecer, vai baixar o zip do start Spring.io.
+ E já vai extrair também, você pode adicionar no workspace, ou seja, eu já tenho um projeto aberto aqui,
+ que é o projeto do Mave, do vídeo anterior.
+ Ou eu posso abrir diretamente, eu vou escolher para abrir diretamente aqui no Visual Studio Code.
+ Abriu aqui, nós temos novamente a aba do Java, eu vou fechar, e nós temos o nosso projeto com o Spring Boot também.
+ Aqui nós temos o main, já vem criado aqui com resources, se você quiser colocar os dados do seu banco de dados, pode.
+ Já vem criado aqui a classe principal, que é uma aplicação de demo, você pode mudar esse nome também.
+ Já vem criado também um teste básico, que você também consegue executar esses testes diretamente.
+ Além disso, vem também o nosso pxml.
+ Aqui no pxml, se você quiser, é uma coisa que dá para a gente fazer com esse arquivo aberto.
+ Por exemplo, eu criei aqui com um longbog, com a G2, e também com o rest.
+ Mas eu quero adicionar mais coisas no meu pxml, lado o start Spring.io.
+ Eu posso clicar com um botão direito, eu venho aqui em Edit Storders, ou seja, vou editar quais são as minhas dependências.
+ E aqui eu posso escolher mais coisas para poder adicionar.
+ Como por exemplo, eu vou adicionar esses Spring Boot DevTools.
+ E aí sim, eu posso clicar com o Enter, adicionei mais uma dependência.
+ E ele vai adicionar as novas dependências, ou vai remover as dependências que você pedir.
+ Vai automaticamente atualizar o pxml, e aí sim você consegue atualizar o seu projeto.
+ Então não precisa em outro lugar caso você mood de ideia, precisa de mais alguma coisa, ou quer remover alguma coisa do seu pxml.
+ Eu achei suporte fantástico, porque essa é uma tarefa bem comum, principalmente quando você ainda não tem certeza de tudo que você vai precisar no seu projeto Spring.
+ Aqui nós já temos também aqui o Target, que é onde vai ser gerado os arquivos de build depois.
+ E no caso, o Spring Boot ele vai gerar um arquivo já para a gente, mesmo essa sendo uma aplicação web.
+ Depois de alguns segundos, a gente já consegue ver que todo o projeto foi gerado, já fez a compilação inicial.
+ E agora nós temos aqui esses links de run dos testes de debug também, e também da nossa aplicação main.
+ Se você desejar, você pode clicar aqui diretamente no run, ou a gente também tem agora esse Spring Boot Dashboard, que a gente pode abrir aqui.
+ Eu vou esconder aqui o meet, um tomcat, só para a gente poder ter um pouco mais espaço.
+ E aqui a gente consegue facilmente iniciar o nosso projeto Spring Boot, ou então parar.
+ Então eu vou fazer o start dele aqui, vai abrir aqui o terminal, e a gente consegue ver o projeto sendo inicializado.
+ Então quando o projeto foi inicializado, ele vai rodar na porta 8080, como a gente consegue ver aqui.
+ No Tomcat. Tomcat local host, porta 8080.
+ Vamos criar um controller para poder ver como ficaria a gente realmente trabalhar no projeto.
+ Eu vou parar aqui, o servidor, vou fechar aqui o terminal, e nós vamos criar uma classe nova.
+ Aqui dentro do Visual Studio Code, eu vou vir aqui criar um novo folder, eu vou chamar de controller.
+ Você pode dar o nome que você quiser também, eu geralmente gosto de separar entre controller, serviços,
+ models, repositórios, etc.
+ E aqui eu vou criar um arquivo novo, que eu vou chamar de HelloController.java.
+ Então criei aqui a minha classe, e agora nós vamos trabalhar aqui e criar o nosso controller.
+ Uma coisa legal também com esse pacote de extensões do Visual Studio Code é que geralmente quando a gente usa e clipse ou entali.j,
+ a gente já consegue criar o arquivo e já gera para a gente o código inicial da classe.
+ Aqui no Visual Studio Code, você precisa criar o primeiro arquivo para depois você adicionar o conteúdo desse arquivo.
+ Mas aqui nós também temos atalhos para poder facilitar nossa vida, então eu vou começar aqui de estar class.
+ E aqui a gente consegue ver que a gente tem doisintelicências, esse aqui de baixo que a gente consegue ver que já gera com um pacote, com um diretorque, nós estamos trabalhando,
+ e já geram um público class controller, então eu vou escolher o meu código inicial.
+ Agora como esse é um REST Controller, nós vamos começar a adicionar as notações, é uma primeira notação, eu vou colocar aqui o REST Controller.
+ Então aqui ó, REST, e vou apertar o contra um espaço para conseguir ter o intel licenci, e aqui também eu consigo ver a documentação como se fosse em qualquer outra ideia.
+ Vou escolher essa primeira porque é do orgs do Spring mesmo, que eu estou procurando, e já faz o import para mim automaticamente aqui também.
+ Outra coisa que eu vou fazer agora é criar um método, como esse controller a REST, significa que nós podemos criar métodos para Get, post, put e delete.
+ Então aqui eu vou começar a digitar um Get, e aqui nós temos um GetMappingMetod, então é um snippet que também nós podemos utilizar, vou escolher ele.
+ Nós temos um código base para ter de um método HTTP Get. O valor aqui, eu vou deixar como a barra mesmo, já que vai ser um HelloWord.
+ Aqui eu vou retornar uma string, eu vou retornar aqui um "olamundo" vscode, e vou remover esse request parando aqui, já que eu não vou utilizar.
+ Uma outra coisa que eu acho legal também, que é o mesmo suporte que nós temos em outras IDS, é que nós conseguimos ver agora que esse import não está sendo mais utilizado.
+ E clicando nele, nós também temos essa lâmpada, clicando na lâmpada, nós podemos pedir para organizar os imports, e automaticamente vai remover todos os imports que não estão sendo utilizados.
+ Nós também conseguimos manter o nosso código limpa aqui dentro do Visual Studio Code.
+ Feito aqui o nosso, a nossa classe controller, eu vou voltar aqui no demo application, você pode escolher para executar por aqui,
+ ou então, vim aqui no dashboard e pedir para executar a aplicação.
+ Nós vamos executar a aplicação novamente, e nós vamos testar no browser para ver se nós realmente conseguimos ver a string "olamundo" vscode, quando a gente acessar o localhost8080.
+ Abrindo o terminal novamente, sua voo conferir se a aplicação realmente está rodando,
+ vou vim aqui em debug console, que é o terminal que está sendo executado a partir do Spring Boot,
+ e nós vamos ver que a aplicação foi iniciada, aparentemente não tem nenhum erro,
+ e aqui você pode acessar o localhost8080 diretamente no browser, ou então você pode clicar com botão direito e pedir para abrir no browser.
+ Vindo agora aqui no browser, nós temos o "olamundo" vscode, ou seja, nós temos uma aplicação Spring Boot sendo executada diretamente aqui do Visual Studio Code.
+ Bem, pessoal, por hoje é só, não esqueçam de se inscrever aqui no canal para não perder nenhuma novidade,
+ ative o sininho, esse curtiu o vídeo, por favor, não esqueça de deixar um joinha.
+ Obrigada por assistir, e como sempre, vou ficar esperando pelo feedback de vocês. Até a próxima!

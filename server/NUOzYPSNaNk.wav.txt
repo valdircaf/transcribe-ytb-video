@@ -1,0 +1,276 @@
+ Nessa altura do campeonato, você já deve ter desbarrado por aí com a sigla MCP.
+ Pois é, não tem nada a ver com o Microsoft Certified Professional.
+ Pelo menos, não essa versão nova.
+ A Undrop criadora do LLM Clod lançou o model context protocol ou o MCP,
+ como uma forma de melhorar a comunicação entre sistemas e LLMs.
+ E a ideia é tão boa que já virou padrão rapidamente entre outros LLMs.
+ Tanto que já tenha até implementação com a OpenEI e no GitHub Copilot,
+ e virou aí meio que uma nova febre criar o seu próprio servidor MCP.
+ E é por isso que estamos aqui hoje.
+ Vamos montar um servidor MCP e ver ele funcionando dentro do Clod Desktop.
+ Você vai descobrir como implementar o seu e desvendar de vez como esse MCP funciona.
+ Esse é um mão no código quadro onde a gente coloca o código para rodar em algum projeto
+ ou em uma simples explicação.
+ Se você curte ver essas coisas em funcionamento aqui na prática,
+ então já deixa aquele tapa no botão de inscreva-se e ative o sininho.
+ Aproveita e já comenta aqui pra mim se você já fez algo aí com o MCP ou pretende fazer.
+ De qualquer forma, se você chegou aqui, perdidão vale a pena uns 30 segundos
+ pra te explicar esse protocolo.
+ Então dá só uma olhadinha nesse diagrama.
+ O model context protocolo é um protocolo de comunicação
+ que conecta a ferramenta de desenvolvimento com o modelo GA, simples assim.
+ Um rote com cliente, MCP como o Clod, ideias e outras ferramentas.
+ Se comunica o através do protocolo, MCP com diferentes servidores, MCP.
+ Cada servidor MCP, ABC, serve como intermediário
+ conectando-se a diferentes fontes de dados.
+ Os serviços A e B acessam fontes de dados locais.
+ Os serviços C se conecta IPAs web que acessam serviços remotes na internet.
+ Essa arquitetura permite que ferramenta de desenvolvimento obtei um contexto adicional
+ pra modelos GA de forma padronizada,
+ melhorando assim a capacidade dos modelos
+ de entender e processar informações específicas do ambiente do usuário.
+ Sempre precisa compartilhar todos os dados com o modelo.
+ Bom, resumindo o MCP facilita a integração de várias fontes de dados
+ com sistemas de inteligência artificial,
+ mantendo ali um padrão de comunicação consistente.
+ Então, se você já tem IPAs no seu sistema e quer integrar ele com LLMs,
+ seja ali para fazer consulta ou mesmo para a manipulação de dados,
+ você pode expor só os dados e as funcionalidades que forem necessárias
+ criando um servidor MCP para isso.
+ No MCP existem três componentes,
+ os servers, os clients e o registry.
+ MCP servers são simplesmente servidores que expõem IPAs e fornecem acesso a funcionalidades
+ e dados específicos.
+ Entra em nessa lista, CRMs, bancos de dados, serviços de consulta,
+ automação, financeiros ou qualquer outra fontes de informação estruturada.
+ MCP Client, já são os modelos de A, como o chatchplode ou o próprio GitHub Copilot,
+ que fazem chamadas aos MCP servers,
+ para obter dados ou executar ações.
+ Os clientes você também podem construir.
+ E o MCP Registry, que é um diretório onde MCP servers
+ podem ser encontrados e descobertos dinâmicamente pelas reais.
+ Um assistente virtual conseguirá encontrar e se conectar.
+ Há nove servidores sem necessidades de configurações manuais.
+ Então, vamos embora criar o nosso próprio servidor MCP.
+ Já percebeu como é que a forma como a gente integra e a nossa aplicação está evoluindo rápido.
+ E você consegue perceber se a sua carreira está evoluindo.
+ E a evolução tem que ser constante.
+ Se você está sentindo um estacionado, isso já deve te servir de alerta.
+ É bem provável que essa já seja melhor hora para você buscar algo novo
+ para aprender ou para se especializar.
+ Prata ajudar nesse objetivo com formações completos para te preparar para atuar em tecnologia,
+ com conteúdo prático atualizado e focado no que o mercado está pedindo.
+ Nós indicamos a FIAP.
+ Tem graduação para quem está começando ou mudando de área.
+ Tem post-tech para se especializar e tem MBA para quem já quer liderar projetos e tímes.
+ E o melhor tudo isso cobrindo várias trilhas de carreira.
+ De desenvolvimento de software, cloud e cyber,
+ censa da computação em engenharia e inteligência artificial.
+ E o legal é que mesmo você não morando próximo de um dos polos da FIAP,
+ você faz os cursos online com a mesma qualidade de ensino
+ e dá também para fazer de forma híbrida.
+ E aproveitar os espaços dos polos de apoio.
+ Se você quer crescer na sua carreira em tech de forma consistente,
+ clica no link que está aqui na descrição e confere as formações da FIAP.
+ E o nosso código vai estar em Node e a gente vai utilizar TypeScript e o NPM.
+ A gente começa importando a biblioteca do MCP,
+ que já tem SDK para Python, C# e Java para várias linguagens já.
+ E a gente precisa também utilizar essa biblioteca, que é o STDIO.
+ E vale lembrar também que existem dois tipos de MCP,
+ um que é o MCP SSCE, que é o Server Send Events,
+ que é ali baseado em HTTP para servidor de MCP remotos.
+ E o outro que é o que nós estamos usando que é o MCP STDIO,
+ que é Standard input-output.
+ Ele é baseado ali em fluxo de entrada e saída do próprio sistema operacional.
+ Então ele faz a integração local de componentes no mesmo sistema.
+ E use, que é justamente uma biblioteca para a gente validar e inferir os tipos de dados.
+ Isso é super importante, porque uma vez que a gente está lidando com LLM
+ e a gente, no fim das conscientes, vai acabar fazendo um prompt,
+ a gente valida a entrada e a saída desses tipos.
+ Então a gente vai ter certeza que os dados vão estar todos formatados certinhos.
+ Quando a gente foi avaliar ali a própria documentação oficial do MCP,
+ nós vimos que o exemplo que eles trazem é muito bom.
+ Então a gente já está resolvendo utilizar ele e vai escrar o nosso próprio.
+ E eu coloquei todo num arquivo só que a gente vai explicar.
+ Mas no repositório que vai estar aí para você no GitHub,
+ a gente já separou, já fez ali uma divisão usando a Clean Architecture.
+ Então fica bem mais fácil também de você entender.
+ Se você entende um pouco de arquitetura.
+ Então a ideia é usar um serviço MAP de previsão de tempo,
+ que já tem disponível.
+ Nesse caso, a gente usou a mesma que eles disponibilizaram,
+ mas para serviços lá nos Estados Unidos.
+ A gente pode adaptar facilmente aqui para usar no nosso país.
+ E a gente define dois constantes, justamente o endereço da API
+ e também o user-agente.
+ Como a gente vai precisar fazer solicitação via Web,
+ como uma REST API também, normal, tá?
+ Então a gente vai precisar dessas informações.
+ Então a gente criou um próprio user-agente
+ para fazer essa chamada dentro da API.
+ E precisamos criar uma instância de um servidor.
+ Então a gente dá um nome para ele, coloca aqui uma versão.
+ E a gente tem aqui as capabilites, que são as capacidades desse servidor.
+ Nesse caso, a gente não definiu aqui.
+ A gente vai definir, por exemplo, o tools em um outro lugar.
+ Continuamos com uma função justamente
+ que faz a requisição HTTP, ela recebe a URL.
+ Passa aqui o user-agente, todas as informações.
+ E simplesmente trata essa chamada, tá?
+ Então ela já vai vir com todos os parâmetros ali
+ que a gente precisa, e ela trata se a resposta veio adequadamente ou não.
+ Só lembrando, né?
+ A gente cria a instância aqui, mas ela ainda não está rodando.
+ Quem vai definir a entrada e a saída, como a Vanessa falou,
+ se a gente vai usar o mcpstda ou o sse, vai ser aqui no final.
+ A gente vai ter uma outra chamada, nesse caso aqui,
+ uma função principal aqui da nossa aplicação,
+ que vai rodar esse servidor.
+ Então a gente cria uma instância do objeto transporte,
+ que este é isso, server transporte,
+ e vamos conectar ela ao nosso servidor mcp.
+ Uma vez feito isso, já tá rodando nosso servidor.
+ Claro que se deu algum problema aqui, a gente tem que tratar também.
+ E aí, já tá funcionando para a gente conectar ao nosso cliente.
+ E como é importante a gente tratar dado de entrada e saída com o LLM,
+ a gente tem todos aqui os nossos contratos,
+ dos tipos que a gente vai usar.
+ Então, por exemplo, uma interface que mostra quais são os tipos de alerta,
+ as informações de uma alerta de tempo.
+ Então nesse caso aqui é um evento, que é uma string,
+ uma área, a área que ela vai usar a string,
+ é veridade, status, então tá tudo aqui.
+ A gente vai ter uma função para formatar esse alerta,
+ porque podem ser vários alertas, então ele vai retornar uma rede, alertas.
+ Então a gente tem uma função simplesmente para pegar todas essas propriedades
+ e jogar isso tudo numa string.
+ Além disso, são dois tipos de chamada que a gente pode fazer.
+ Uma dessa API vai ser justamente para você voltar, a previsão do tempo,
+ e o outro é justamente para trazer os alertas que existem.
+ E isso é como se fosse o endpoint das nossas APIs.
+ Então você pode criar várias tuas e diferentes,
+ com chamadas diferentes, e com tipos diferentes também.
+ E por fim, nós temos mais algumas interfaces,
+ que é justamente porque temos o retorno como a reita também,
+ pode ter mais de uma instância ali.
+ Então para a previsão de tempo, a gente pode ter uma rede de períodos
+ e os de alertas também.
+ Então, a gente trata isso no código e utilizando o zód também
+ para não deixar nenhum tipo de problema quando a gente fizer a chamada para o LLM.
+ Agora a gente trouxe que a própria documentação
+ para falar um pouquinho dos tuos, porque é um conceito um pouco novo.
+ Embora o Gabriel já tem até explicado que não deixa de ser ali um pouco o endpoint da API.
+ Bom, já conto com a própria definição da documentação,
+ as tuas ali no MCP são projetadas para ser um modelo controlado
+ que significa que o modelo de linguagem pode descobrir
+ e invocar as ferramentas automaticamente a partir da sua compreensão contextual
+ e do prompto do usuário.
+ Por isso que cada tu tem, na verdade, um texto de descrição do que ela faz.
+ E é exatamente através desse texto que ele consegue fazer essa comparação contextual.
+ Exatamente. Então, a gente registra as nossas tuas,
+ que é a primeira, eu vou chamar de GetAlert, justamente,
+ que chama os alertas de tempo, né?
+ E tem a descrição aqui, num caso que está em inglês, né?
+ Ele pega os alertas de tempo para um estado.
+ Então, ele vai receber como o parâmetro, né?
+ O segundo parâmetro aqui é o estado.
+ E aqui já eu uso ódio fazendo aqui o seu trabalho aqui de formatação dos dados.
+ Então, a gente vai ter que botar a sigla de um estado americano.
+ E o quarto parâmetro, sendo justamente uma função a síncrona,
+ que recebe esses dados aqui, trata ao RL da API,
+ faz a chamada a requisição lá, a HTTP da API e trata os dados.
+ Então, se não vier, por exemplo, nenhum dado de alerta,
+ ele retorna aqui, num array, com um texto que deu problema.
+ Se não tiver nenhuma features lá, retornada, ele também trata,
+ dizendo que não tem nenhum alerta, nesse caso, aí, por o estado.
+ Se tiver, então, a gente chama aqui o array de features,
+ formata os alertas e retorna isso, justamente, no mesmo formato, também,
+ para o nosso MCP, para o nosso servidor MCP.
+ No caso, de previsão do tempo, é o mesmo coisa.
+ Você tem uma outra "tú", você dá um nome para ela.
+ Esse nome tem que ser o único ali, né?
+ Colocar as informações, nesse caso, a gente precisa de latitude e longitude.
+ Então, o ódio faz esse trabalho, também, de formatar,
+ como a gente precisa os nossos dados, de latitude e longitude,
+ você tem ali um mínimo máximo que você pode ter, de informação.
+ E esse tratamento é individual, cada tipo de dado que você usa,
+ vai ter que fazer esse tipo de tratamento.
+ E aí, existe avalidação, justamente, da URL da API,
+ passando esses dados de latitude e longitude,
+ e a avalidação dos dados, também, depois de feita chamada, né?
+ Aqui, na API, se os dados não voltaram nada,
+ retornam uma mensagem de erro.
+ Se voltou com um problema aqui na URL, você também volta ao mensagem de erro.
+ E aí, no fim, aqui, você tem toda a avalidação,
+ e até a própria formatação dos dados aqui, de previsão.
+ Temperatura, vento e esse tipo de coisa.
+ No fim, você tem um testão aqui, no final,
+ você junta tudo isso, num texto, e retorna aqui, ó.
+ Justamente, no mesmo formato, tá vendo?
+ Um arrei com o tipo texto e o texto do forecast, né?
+ Se você quiser voltar de outra forma também, o teu tipo, você pode, também, tá?
+ Nesse caso, aquele simplificou até, por exemplo.
+ Então, a gente tem dois tools registradas aqui,
+ e a gente já vai colocar para rodar e ver como fica isso no cliente.
+ Então, nesse caso, eu vou fazer o build desse projeto,
+ e ele vai colocar, justamente, na minha pasta build,
+ nesse caso, um arquivo, né, com todo código, dentro dessa pasta.
+ Então, eu vou executar, na verdade, o Node, no cliente, vai ficar meio assim, ó.
+ Build index, tá?
+ Eu vou, na verdade, utilizar o Node, rodar ele.
+ Aí, o nosso servidor vai estar ativo, e o cliente vai conseguir fazer as chamadas.
+ Então, nesse caso, a gente vai usar o próprio cliente do Cloud, aqui, pro Windows, tá?
+ E você pode até usar outros que já estão disponíveis, eu acho que o ChatGPT
+ já tá dando suporte a MCP, tem vários outros também.
+ Mas a gente falou, né, acabou virando padrão.
+ E tá todo mundo liberando a utilização através do MCP.
+ Então, nesse caso, a gente pode vir aqui em cima, ó, em arquivo, com figurações.
+ A gente tem aqui, ó, desenvolvedor, e aí tem, justamente, um arquivo
+ para você editar, manualmente, ali, quais são os servidores MCP, você vai registrar, né?
+ Os servidores MCP, locais que você tá usando.
+ É um JSON mesmo, tá mesmo?
+ Você coloca aqui MCP servers, e botei o nome do nosso servidor.
+ E qual comando que ele vai executar?
+ Como a gente tá usando o Node, a gente coloca ali, esse fosse pai, então, seria outra chamada, né?
+ E justamente o nome do arquivo caminho certinho, pro nome do nosso arquivo já habildado.
+ Mão, feito isso, tem só que reiniciar ali esse próprio aplicativo aqui do Clod,
+ que a propósito é a versão desktop, nós estamos usando, acho que a gente acabou não citando.
+ E se você reparou, você vê que agora eu já tenho mais ícones aqui, olha.
+ Você tem um servidor MCP, ele já lista aqui, quais são os servidores que estão instalados,
+ nesse caso aqui é o Sol, o nosso weather, não é?
+ E quais são os tools?
+ Ele até coloca aqui um ícon de martelo, referência, né?
+ E quais são esses dois, tá vendo?
+ Então ele diz que existe o Getforecast, GetAlerts do servidor weather, não é?
+ E aquela descrição que a gente colocou no código.
+ Agora chegou a hora da verdade, né?
+ Vamos, por exemplo, perguntar qual é a previsão do tempo para Nova York.
+ Só que acontece, vê que tem um contexto ali e ele pergunta, olha, a gente pode executar
+ essa ferramenta local aqui, que pega ali o estado para poder fazer essa pesquisa, você quer.
+ E aí eu vou colocar aqui, nesse caso ele tá executando também o outro, ele pediu para executar
+ o outro também.
+ Não só alertas, mas também a própria previsão do tempo.
+ E ele fez a chamada, a gente consegue até abrir aqui o resultado da chamada, o retorno
+ da chamada local, e ele responde aqui, de forma natural as informações que o pídeo.
+ Para obter as informações mais precisas sobre a previsão do tempo, eu vou consultar
+ os dados meteorológicos para a cidade.
+ E aí ele, justamente quando ele pede para executar aqui o Forcast.
+ Previsão, hoje, ó, temperatura, 11 graus, predominantemente, no blado, essa noite, amanhã,
+ e etc.
+ Então eu posso perguntar especificamente também, existe alguma alerta, existe algum alerta de
+ tempo para califórnia, aqui no chat, como já deu autorização, ele já está lá consultando.
+ Agora é interessante que ele mesmo se vira, ele vê ali que um dos dados que precisa
+ lá de estúdio de longitude, ele mesmo já vai lá se vira, consegue achar os dados e traz
+ informações, ó, como é que ele já formatou, daquele jeito que a gente mostrou no código,
+ os alertas de vento, ele já dá aqui quais são os alertas, comunicados especial sobre o
+ tempo, por norte, isso de trinit e alguns alertos mais antigos.
+ Então você vê aqui, a gente conectando um serviço que já existe, um API que já existe,
+ há um servidor MCP, a gente consegue fazer essa comunicação numa forma muito mais prática.
+ Acredite você ou não esse foi só um exemplo pequeno, mas bem poderoso para a integração.
+ Nós temos opções ainda de implementar um cliente MCP, então vamos depender desses chatos
+ ou interfaces já prontas, isso vai mudar bastante a forma como interagimos com sistemas
+ daqui para frente.
+ Se você quer ver a gente implementar um cliente MCP, é só deixar aqui nos comentários.
+ Se curtir se inscreve aqui no canal e deixa aquele joinha, nos vemos no próximo vídeo.
+ Tchau, tchau.
+ [Música]
